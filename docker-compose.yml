@@ -1,0 +1,45 @@
+version: "3"
+services:
+#  web:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.development
+#
+#    command: "/usr/local/bin/yarn start"
+#    #    command: '/usr/local/bin/yarn migrate & /usr/local/bin/yarn seed & /usr/local/bin/yarn start'
+#    #    env_file: docker-compose.env
+#    environment:
+#      - NODE_ENV=docker-compose
+#      - POSTGRES_URL=postgres://pbm_user:pbm_password@db/pbm
+#    #    command: 'yarn migrate --url $POSTGRES_URL'
+#    #    command: 'bash -c "cd /app && rm -f tmp/pids/server.pid && bundle exec rails db:create && bundle exec rails db:migrate && bundle exec rails server"'
+#    #        environment:
+#    #      - NODE_ENV=development
+#    #      - POSTGRESQL_HOST=db
+#    #      - POSTGRES_URL=postgres://pbm_user:pbm_password@db/pbm
+#    #      - REDIS_URL=redis://redis:6379
+#    #    env_file:
+#    #      - docker-compose.env
+#    ports:
+#      - "8000:8000"
+#    depends_on:
+#      - db
+#    #      - redis
+#    volumes:
+#      - ".:/app"
+  db:
+    image: "postgres:12.1"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./.docker/postgres:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: import_user
+      POSTGRES_PASSWORD: import_password
+      POSTGRES_DB: import_db
+#  redis:
+#    image: 'redis:4.0.11'
+#    ports:
+#      - '6379:6379'
+#    volumes:
+#      - './.docker/redis:/data'
